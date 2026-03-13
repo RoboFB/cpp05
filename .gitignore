@@ -1,0 +1,35 @@
+
+
+# option for the end of project
+#*.gitignore
+#docs
+
+
+# IDE settings
+.vscode
+
+
+# Robin
+*_R_*
+
+
+# testing files
+# *.txt
+
+
+# Compiled Object files
+*.o
+
+
+# Compiled Static libraries
+*.a
+
+
+# Executables
+*.exe
+*.out
+
+ex0*/run
+# ex01/
+# ex02/
+# ex03/
