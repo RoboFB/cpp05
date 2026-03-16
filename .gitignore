@@ -29,7 +29,7 @@
 *.exe
 *.out
 
-ex0*/run
+ex0*/bureaucrat
 # ex01/
 # ex02/
 # ex03/

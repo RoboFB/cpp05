@@ -6,22 +6,16 @@
 /*   By: rgohrig <rgohrig@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 15:05:55 by rgohrig           #+#    #+#             */
-/*   Updated: 2026/03/13 16:22:30 by rgohrig          ###   ########.fr       */
+/*   Updated: 2026/03/16 16:16:50 by rgohrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "Bureaucrat.hpp"
 
 #include <string>
 #include <ostream>
 
-#include "Bureaucrat.hpp"
-
-/* 
-if out of range trows 	
-Bureaucrat::GradeTooHighException / Bureaucrat::GradeTooLowException
-
-*/
-
-// constructors / destructor
+// constructor
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : name_(name), grade_(grade)
 {
 	if (grade_ < 1)
@@ -30,16 +24,18 @@ Bureaucrat::Bureaucrat(const std::string &name, int grade) : name_(name), grade_
 		throw Bureaucrat::GradeTooLowException();
 };
 
+// destructor
 Bureaucrat::~Bureaucrat() {};
 
+// copy constructor
 Bureaucrat::Bureaucrat(const Bureaucrat &deepCopy) : name_(deepCopy.name_), grade_(deepCopy.grade_) {};
 
-// no change of name- because its const
+// copy assignment operator
+// no change of name_ because its const
 Bureaucrat & Bureaucrat::operator=(const Bureaucrat &deepCopy)
 {
 	if (this != &deepCopy)
 	{
-		// this->name_ = deepCopy.name_;
 		this->grade_ = deepCopy.grade_;
 	}
 	return *this;
@@ -71,14 +67,15 @@ int Bureaucrat::getGrade() const
 	return grade_;
 };
 
+// exceptions
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return "grade too high";
+	return "grade too high, max is 1";
 }
 
 const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return "grade too low";
+	return "grade too low, min is 150";
 }
 
 

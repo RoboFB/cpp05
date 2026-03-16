@@ -6,7 +6,7 @@
 #    By: rgohrig <rgohrig@student.42heilbronn.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 10:21:00 by rgohrig           #+#    #+#              #
-#    Updated: 2026/03/13 15:05:05 by rgohrig          ###   ########.fr        #
+#    Updated: 2026/03/16 15:35:12 by rgohrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,16 +16,15 @@
 
 # ----------------------------- GENERAL ----------------------------------------
 
-NAME :=			run
+NAME :=			bureaucrat
 
-COMPILER 		:= c++
-DEBUG_FLAGS		:= -Wshadow -g -fsanitize=address,undefined
-CFLAGS			:= -Wall -Werror -Wextra -std=c++17
-# export CFLAGS # set also for the libft or other sub-Makefiles
+COMPILER :=		c++
+DEBUG_FLAGS :=	-Wshadow -g -fsanitize=address,undefined
+CFLAGS :=		-Wall -Werror -Wextra -std=c++17
 
-HEADERS := -I include 
+HEADERS :=		-I include 
 
-SRC :=			
+SRC :=			main.cpp Bureaucrat.cpp
 
 DIR_OBJ :=		obj
 OBJ :=			$(SRC:%.cpp=$(DIR_OBJ)/%.o)
