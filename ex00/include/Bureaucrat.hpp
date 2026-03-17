@@ -6,9 +6,11 @@
 /*   By: rgohrig <rgohrig@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 15:05:55 by rgohrig           #+#    #+#             */
-/*   Updated: 2026/03/16 16:05:14 by rgohrig          ###   ########.fr       */
+/*   Updated: 2026/03/16 16:37:16 by rgohrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #include <string>
 #include <ostream>
@@ -31,8 +33,8 @@ class Bureaucrat
 		Bureaucrat & operator=(const Bureaucrat &deepCopy);
 	
 		// methods
-		void vitaminB();
-		void selfSabotage();
+		void upgrade();
+		void downgrade();
 
 		// getters/ setter
 		const std::string & getName() const;

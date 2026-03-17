@@ -6,22 +6,23 @@
 /*   By: rgohrig <rgohrig@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 15:05:55 by rgohrig           #+#    #+#             */
-/*   Updated: 2026/03/16 16:16:50 by rgohrig          ###   ########.fr       */
+/*   Updated: 2026/03/17 14:25:42 by rgohrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "Bureaucrat.hpp"
 
 #include <string>
 #include <ostream>
 
+#include "Bureaucrat.hpp"
+
 // constructor
-Bureaucrat::Bureaucrat(const std::string &name, int grade) : name_(name), grade_(grade)
+Bureaucrat::Bureaucrat(const std::string &name, int grade) : name_(name)
 {
-	if (grade_ < 1)
+	if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
-	if (grade_ > 150)
+	if (grade > 150)
 		throw Bureaucrat::GradeTooLowException();
+	grade_ = grade;
 };
 
 // destructor
@@ -42,14 +43,14 @@ Bureaucrat & Bureaucrat::operator=(const Bureaucrat &deepCopy)
 };
 
 // methods
-void Bureaucrat::vitaminB()
+void Bureaucrat::upgrade()
 {
 	if (grade_ <= 1)
 		throw Bureaucrat::GradeTooHighException();
 	grade_--;
 };
 
-void Bureaucrat::selfSabotage()
+void Bureaucrat::downgrade()
 {
 	if (grade_ >= 150)
 		throw Bureaucrat::GradeTooLowException();
@@ -68,12 +69,12 @@ int Bureaucrat::getGrade() const
 };
 
 // exceptions
-const char *Bureaucrat::GradeTooHighException::what() const throw()
+const char *Bureaucrat::GradeTooHighException::what() const noexcept
 {
 	return "grade too high, max is 1";
 }
 
-const char *Bureaucrat::GradeTooLowException::what() const throw()
+const char *Bureaucrat::GradeTooLowException::what() const noexcept
 {
 	return "grade too low, min is 150";
 }

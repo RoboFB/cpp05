@@ -6,7 +6,7 @@
 /*   By: rgohrig <rgohrig@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:22:42 by rgohrig           #+#    #+#             */
-/*   Updated: 2026/03/16 16:04:16 by rgohrig          ###   ########.fr       */
+/*   Updated: 2026/03/16 16:34:35 by rgohrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,22 @@ int main(void)
 	put_debug("init values:");
 	std::cout << first << "\n" << last << "\n\n";
 	
-	put_debug("first 2x up/vitaminB:");
+	put_debug("first 2x up/upgrade:");
 	try {
-		first.vitaminB();
+		first.upgrade();
 		std::cout << first << "\n";
-		first.vitaminB();
+		first.upgrade();
 	}
 	catch(const std::exception& e) {
 		std::cerr << "ERROR caught: " << e.what() << "\n";
 	}
 	std::cout << first << "\n\n";
 	
-	put_debug("last 2x down/selfSabotage:");
+	put_debug("last 2x down/downgrade:");
 	try {
-		last.selfSabotage();
+		last.downgrade();
 		std::cout << last << "\n";
-		last.selfSabotage();
+		last.downgrade();
 	}
 	catch(const std::exception& e) {
 		std::cerr << "ERROR caught: " << e.what() << "\n";
