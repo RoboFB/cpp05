@@ -6,7 +6,7 @@
 /*   By: rgohrig <rgohrig@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 15:05:55 by rgohrig           #+#    #+#             */
-/*   Updated: 2026/03/17 13:54:47 by rgohrig          ###   ########.fr       */
+/*   Updated: 2026/03/18 17:08:41 by rgohrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <ostream>
 #include <exception>
 
-class Form; // forward declaration
+class AForm; // forward declaration
 
 /* 
 Bureaucrat trows if out of range (1-150):
@@ -39,7 +39,8 @@ class Bureaucrat
 		void downgrade();
 
 		// NEW:
-		void signForm(Form &form);
+		void signAForm(AForm &AForm);
+		void executeForm(const AForm &AForm) const;
 
 		// getters/ setter
 		const std::string & getName() const;

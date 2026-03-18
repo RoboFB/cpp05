@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                     :+:      :+:    :+:   */
+/*   AForm.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rgohrig <rgohrig@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -19,61 +19,65 @@
 class Bureaucrat; // forward declaration
 
 /*
-Form trows if out of range (1-150):
-- Form::GradeTooHighException
-- Form::GradeTooLowException
+AForm trows if out of range (1-150):
+- AForm::GradeTooHighException
+- AForm::GradeTooLowException
 */
-class Form
+class AForm
 {
 	public:
 		// constructors / destructor
-		Form() = delete; // delete because of the const name_
-		Form(const std::string &name, const int gradeRequiredSign = 150, const int gradeRequiredExecute = 150);
-		~Form();
+		AForm() = delete; // delete because of the const name_
+		AForm(const std::string &name, const int gradeRequiredSign = 150, const int gradeRequiredExecute = 150);
+		virtual ~AForm();
 
-		Form(const Form &deepCopy);
-		Form & operator=(const Form &deepCopy);
+		AForm(const AForm &deepCopy);
+		AForm & operator=(const AForm &deepCopy);
 	
 		// methods
 		void beSigned(const Bureaucrat &bureaucrat);
+		void execute(Bureaucrat const & executor) const;
 		
-
 		// getters/ setter
 		const std::string & getName() const;
 		bool getSigned() const;
 		int getGradeRequiredSign() const;
 		int getGradeRequiredExecute() const;
-
+		
 		// exceptions forward-declared
 		class GradeTooHighException;
         class GradeTooLowException;
 		class AlreadySignedException;
-
+		class NotSignedException;
+		
+	protected:
+		// only in derived classes
+		virtual void doExecuteUnchecked() const = 0;
+		
 	private:
 		const std::string	name_;
 		bool				signed_;
 		const int			gradeRequiredSign_; // (1-150)
 		const int			gradeRequiredExecute_; // (1-150)
+
 };
 
-class Form::GradeTooHighException : public std::exception
-{
-	public:
-		const char *what() const noexcept;
+class AForm::GradeTooHighException : public std::exception {
+	public:	const char *what() const noexcept;
 };
 
-class Form::GradeTooLowException : public std::exception
-{
-	public:
-		const char *what() const noexcept;
+class AForm::GradeTooLowException : public std::exception {
+	public:	const char *what() const noexcept;
 };
 
-class Form::AlreadySignedException : public std::exception
-{
-	public:
-		const char *what() const noexcept;
+class AForm::AlreadySignedException : public std::exception {
+	public: const char *what() const noexcept;
+};
+
+class AForm::NotSignedException : public std::exception {
+	public:	const char *what() const noexcept;
 };
 
 // prints: <name>, signed: <signed>, to sign: <gradeRequiredSign>, to execute: <gradeRequiredExecute>
-std::ostream &operator<<(std::ostream &out, const Form &Form);
+std::ostream &operator<<(std::ostream &out, const AForm &AForm);
 

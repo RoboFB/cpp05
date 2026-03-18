@@ -6,7 +6,7 @@
 /*   By: rgohrig <rgohrig@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 15:05:55 by rgohrig           #+#    #+#             */
-/*   Updated: 2026/03/17 15:01:08 by rgohrig          ###   ########.fr       */
+/*   Updated: 2026/03/18 17:10:43 by rgohrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <iostream>
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 // constructor
 Bureaucrat::Bureaucrat(const std::string &name, int grade) : name_(name)
@@ -60,18 +60,34 @@ void Bureaucrat::downgrade()
 };
 
 // NEW: 
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signAForm(AForm &AForm)
 {
 	try {
-		form.beSigned(*this);
+		AForm.beSigned(*this);
 		std::cout 
 			<< name_
-			<< " signed " << form.getName() << "\n";
+			<< " signed " << AForm.getName() << "\n";
 	}
 	catch(const std::exception& e) {
 		std::cout 
 			<< name_ 
-			<< " couldn't sign " << form.getName() 
+			<< " couldn't sign " << AForm.getName() 
+			<< " because " << e.what() << "\n";
+	}
+}
+
+void Bureaucrat::executeForm(const AForm &AForm) const
+{
+	try {
+		AForm.execute(*this);
+		std::cout 
+			<< name_
+			<< " executed " << AForm.getName() << "\n";
+	}
+	catch(const std::exception& e) {
+		std::cout 
+			<< name_ 
+			<< " couldn't execute " << AForm.getName() 
 			<< " because " << e.what() << "\n";
 	}
 }
