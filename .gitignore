@@ -29,7 +29,8 @@
 *.exe
 *.out
 
+*_shrubbery
+
 ex0*/bureaucrat
-# ex01/
 # ex02/
 # ex03/
