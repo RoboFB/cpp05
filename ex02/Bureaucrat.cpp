@@ -6,7 +6,7 @@
 /*   By: rgohrig <rgohrig@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/13 15:05:55 by rgohrig           #+#    #+#             */
-/*   Updated: 2026/03/18 17:10:43 by rgohrig          ###   ########.fr       */
+/*   Updated: 2026/03/19 13:08:16 by rgohrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <ostream>
 #include <iostream>
 
+#include "my_colors.hpp"
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
@@ -64,15 +65,15 @@ void Bureaucrat::signAForm(AForm &AForm)
 {
 	try {
 		AForm.beSigned(*this);
-		std::cout 
+		std::cout << BLUE
 			<< name_
-			<< " signed " << AForm.getName() << "\n";
+			<< " signed " << AForm.getName() << RESET << "\n";
 	}
 	catch(const std::exception& e) {
-		std::cout 
-			<< name_ 
+		std::cout << BLUE
+			<< name_
 			<< " couldn't sign " << AForm.getName() 
-			<< " because " << e.what() << "\n";
+			<< " because " << e.what() << RESET << "\n";
 	}
 }
 
@@ -80,15 +81,15 @@ void Bureaucrat::executeForm(const AForm &AForm) const
 {
 	try {
 		AForm.execute(*this);
-		std::cout 
+		std::cout << YELLOW
 			<< name_
-			<< " executed " << AForm.getName() << "\n";
+			<< " executed " << AForm.getName() << RESET << "\n";
 	}
 	catch(const std::exception& e) {
-		std::cout 
+		std::cout << YELLOW
 			<< name_ 
 			<< " couldn't execute " << AForm.getName() 
-			<< " because " << e.what() << "\n";
+			<< " because " << e.what() << RESET << "\n";
 	}
 }
 

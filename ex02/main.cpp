@@ -6,7 +6,7 @@
 /*   By: rgohrig <rgohrig@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:22:42 by rgohrig           #+#    #+#             */
-/*   Updated: 2026/03/18 17:14:22 by rgohrig          ###   ########.fr       */
+/*   Updated: 2026/03/19 13:17:59 by rgohrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "my_colors.hpp"
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 #include "Bureaucrat.hpp"
 
 static void put_debug(std::string const &info)
@@ -25,44 +27,42 @@ static void put_debug(std::string const &info)
 
 int main(void)
 {
-	
-	
-	
-	
-	put_debug("small test");
-	Bureaucrat mid("mid", 75);
-	ShrubberyCreationForm home("home");
-	
-
-	// put_debug("test mid ok");
-	// mid.signAForm(easy);
-	// mid.signAForm(exact);
-	
-	// put_debug("test mid fail");
-	// mid.signAForm(easy);
-	// mid.signAForm(exact);
-	// mid.signAForm(hard);
-
-	AForm *pointer = &home;
-
 	try
 	{
-		/* code */
-		// pointer->execute(mid);
-		mid.executeForm(*pointer);
-		mid.signAForm(home);
-		mid.executeForm(*pointer);
-		mid.executeForm(*pointer);
-		mid.signAForm(home);
+		Bureaucrat mid("mid", 75);
+		Bureaucrat cheater("cheater", 1);
+		ShrubberyCreationForm home("home");
+		AForm *home_pointer = &home;
+		PresidentialPardonForm pardon("pardon");
+		RobotomyRequestForm robo("robo");
+		
+		put_debug("test mid");
+		mid.executeForm(*home_pointer); // Error: not signed
+		mid.signAForm(home); 			// Ok: sign
+		mid.executeForm(*home_pointer); // Ok: execute
+		mid.executeForm(*home_pointer); // Ok: execute again
+		mid.signAForm(home); 			// Error: already signed
+
+		put_debug("test cheater");
+		cheater.signAForm(pardon); 		// Ok: sign
+		cheater.signAForm(robo); 		// Ok: sign
+		cheater.executeForm(pardon); 	// Ok: execute
+		cheater.executeForm(robo); 		// Ok: execute
+		cheater.executeForm(robo); 		// Ok: execute
+		cheater.executeForm(robo); 		// Ok: execute
+		cheater.executeForm(robo);		// Ok: execute
+		cheater.executeForm(robo);		// Ok: execute
+
+		put_debug("print all");
+		std::cout << mid << "\n"
+			<< cheater << "\n"
+			<< home << "\n"
+			<< pardon << "\n"
+			<< robo << "\n";
 	}
 	catch(const std::exception& e)
 	{
-		std::cout << "BIG ERROR" << e.what() << '\n';
+		std::cout << RED "!!!BIG ERROR THAT SHOULD NEVER HAPPEN: " << e.what() << RESET "\n";
 	}
-	
-	
-	put_debug("print mid and home");
-	std::cout << mid << "\n" << home << "\n";
-
 	return 0;
 }

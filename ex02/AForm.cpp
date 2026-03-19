@@ -27,10 +27,10 @@ AForm::AForm(const std::string &name, const int gradeRequiredSign, const int gra
 		throw AForm::GradeTooHighException();
 	if (gradeRequiredSign_ > 150 || gradeRequiredExecute_ > 150)
 		throw AForm::GradeTooLowException();
-};
+}
 
 // destructor
-AForm::~AForm() {};
+AForm::~AForm() {}
 
 // copy constructor
 AForm::AForm(const AForm &deepCopy) : 
@@ -48,7 +48,7 @@ AForm & AForm::operator=(const AForm &deepCopy)
 		this->signed_ = deepCopy.signed_;
 	}
 	return *this;
-};
+}
 
 // methods
 
@@ -76,22 +76,22 @@ void AForm::execute(Bureaucrat const & executor) const
 const std::string & AForm::getName() const
 {
 	return name_;
-};
+}
 
 bool AForm::getSigned() const
 {
 	return signed_;
-};
+}
 
 int AForm::getGradeRequiredSign() const
 {
 	return gradeRequiredSign_;
-};
+}
 
 int AForm::getGradeRequiredExecute() const
 {
 	return gradeRequiredExecute_;
-};
+}
 
 // exceptions
 const char *AForm::GradeTooHighException::what() const noexcept
