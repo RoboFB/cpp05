@@ -6,7 +6,7 @@
 /*   By: rgohrig <rgohrig@student.42heilbronn.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:22:42 by rgohrig           #+#    #+#             */
-/*   Updated: 2026/03/19 13:17:59 by rgohrig          ###   ########.fr       */
+/*   Updated: 2026/03/19 15:37:43 by rgohrig          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "Bureaucrat.hpp"
+#include "Intern.hpp"
 
 static void put_debug(std::string const &info)
 {
@@ -59,6 +60,11 @@ int main(void)
 			<< home << "\n"
 			<< pardon << "\n"
 			<< robo << "\n";
+	
+		Intern worker = {};
+
+		worker.makeForm("shrubbery creation", "home");
+	
 	}
 	catch(const std::exception& e)
 	{

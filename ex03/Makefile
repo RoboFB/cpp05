@@ -6,7 +6,7 @@
 #    By: rgohrig <rgohrig@student.42heilbronn.de>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/10 10:21:00 by rgohrig           #+#    #+#              #
-#    Updated: 2026/03/19 12:37:54 by rgohrig          ###   ########.fr        #
+#    Updated: 2026/03/19 15:38:07 by rgohrig          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ HEADERS :=		-I include
 SRC :=			main.cpp Bureaucrat.cpp AForm.cpp \
 				ShrubberyCreationForm.cpp \
 				PresidentialPardonForm.cpp \
-				RobotomyRequestForm.cpp
+				RobotomyRequestForm.cpp \
+				Intern.cpp
 
 DIR_OBJ :=		obj
 OBJ :=			$(SRC:%.cpp=$(DIR_OBJ)/%.o)

@@ -1,6 +1,5 @@
 
 
-## ex02:
+### ex03:
 
--implement the 2 other derived classes like shrubbery
--finish the main check
+test it and make the main for it
